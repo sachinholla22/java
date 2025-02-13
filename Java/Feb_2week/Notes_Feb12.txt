@@ -1,0 +1,67 @@
+STREAMS in Java , are used to read from or write to files ..
+WHen you'r working with file handling in java ,there are two types of streams;
+*)Input Streams:These are used to read data from the source(like a file).
+*)Output Stream: These are used to write data to a destination (like a file).
+
+
+Java Porvides different kinds of streams depending on the types of data you are working with , like bytes or charaters..For Example,
+*)Byte STream: Used for reading and writing raw data (images,audio or any binary files).
+-FileInputStream(for reading)
+-FileOutputStream (for writing)
+
+*)Character Streams:Used for reading and writing text data (like text files).
+-FileReader(for reading)
+-FileWriter(for Writing)
+
+
+Why do we use BufferedReader and BufferedWriter in case of FileReader and FileWriter? 
+ #)For Reading,
+ Because Buffred will be efficiently reading the files  ,, it buffers the input ,meaning it reads data in large chunks
+ rather than one character at a time, which improves the performance .
+
+ -It provides a methods called readLine(), which allows you to read an entire line at once ,making it ideal for reading
+ lines from a text file.
+#)For Writing,
+-It writes text files very efficiently ,
+-It buffers the output ,meaning it writes data in large chunks instead of writing one charatcer at  a time ,
+improving the performance .
+-It provides a method nextLine(), Which writes a new line character(helps when writing multiline text)
+
+For Knowledge:-
+FileReader and FileWriter extend the abstract class Reader and Writer respectively ,which provides 
+the read() and write() methods ..These methods are  abstract in the Reader and Writer class ,and extends in their subclasses (like FileReader),these 
+methods are overridden to provide specific functionality for reading or writing files.
+These methods are overridden to provide speciic functionality for reading or writing files.
+
+FileInputStream and FileOutputStream extend InputStream and OuputStream respectively , These classes provide read() and write() methods.
+
+
+for files referring the absolute paths, give like "/home/sachin-holla/Parent/Child/javaTest.txt"  this other wise it wont do as expected
+
+In Java , Serialized class can contain normal methods ..The presence of methods does not affect the serialiation process.
+
+In Jave Serialization deals only with the instance variables of a class ..methods like normal or static are not serialized ,only the 
+values of the instance variables is serialzied .
+
+Whats the purpose of using 
+*)Method Overloading:-It solves the problem of method name duplication when u want the same functionality 
+to be applied to different types or numbers of arguements.
+Hence , it imporves the code readability and reduces redundncy by usin same method name for similiar actions>
+
+*)Method overriding :-It solves the issue like subclass needs a customized behaviour withour changing the original class,
+Hence it provides flexible and dynamic approach.
+
+*)INheritance solves the problem of code reusablity ..It allows child cass to inherit the properities 
+and method from another class, Also reduces redundancy
+
+*)Encapsulation solves the problem of data security and integrity.
+It  protects the internal state of an object from unauthorized asscess or modification. And provides controlled access.
+
+*)It solves the problem of needing to deal with multiple types of objects using common interface or parent class.
+Hence , it allows extensibility and flexibilty.
+
+*)Abstaction :- Solves the problem of needing to provide a simple interface while hiding the complexity underneath.
+Hence it provides better maintaibabilty and flexibility.
+
+*)INterface :-It helps achieving abstraction and also the 
+

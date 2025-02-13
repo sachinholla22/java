@@ -1,0 +1,75 @@
+Staic methods cannot access the non static variables or methods ..They only can access static variables and other
+static methods rather than referring instance of object variables or methods ..
+Static methods can be refeered with Class name only rather than referring instance of class objects
+
+
+Why switch statement instead of if-else statement ?
+*)It imporves the readability , and an greater alternative for if-else statements
+*)For larger conditions , switch statements can improve the Performance and can be slightly more efficient.
+
+Purpose of using return statements.
+*)Used to exit from a method and optionally pass a value back to the caller.
+
+#Eg for exit from a method,
+public void greet(String name) {
+    if (name == null) {
+        return; // Exits the method if the name is null
+    }
+    System.out.println("Hello, " + name);
+}
+
+
+
+#When u do array creation like int[] arr=new int[]..
+java creates a new Object  in heap memory
+
+
+#When u write ,
+String str=new String("Sachin");
+
+it will be stored in the string pool ("sachin").it is used for saving memory and reuse.
+
+It explicitly creates a new object on the heap But it doesnt initalize the value..it stores the value in string pool
+
+
+
+#Disadvantges of Inheritance:-
+*)Tightly couped with parent class:- Like any changes made in the parent class has effecrs on the child classes also.
+*)Single inheritance only:-Java supports single inheritance by default.
+-SIngle inheritance in the sense like java dont have support to extend multiple parent class
+at a time ..Only it supports interfaces for that .
+
+#When to use interface :-
+*)When u need multiple inheritance .
+*)Define COntract:- interface define contract like method signature . Like the implement class must compulsary define the method.
+
+
+
+Advantages:-
+*)Loosely Coupled :- Classes implement interfaves are not tightly coupled to interfaces  You can change the implementation without affecting the interface 
+
+Disavdantegs:-
+*)Code duplication: if u have methods that need to be shared across severla classes , u need to repeat the implementation in very classthat implements the interface unless u use default methods
+
+#Coding Approach for solving the pattern questions..
+like 
+*
+**
+***
+****
+ etc ..
+ 1)1st print the outerloop as per the number of lines ..as taking example from above its 4 lines.
+ (So number of Lines =Number of Rows)=number of times outer loop runs
+2)Identify in every row, how many colums are there
+like in the above case it has the colums are as same as number of rows 
+3) What do u need to print ..
+
+By those 3 points u can do any pattern printing
+
+
+#Types of Errors in java
+*)Compile time errors ,
+2)Run-time errors,
+3)Logical Errors
+
+#Exceptions is called runtime error

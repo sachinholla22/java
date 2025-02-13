@@ -1,0 +1,68 @@
+1) Question CHeck the array is palindrome or not ,
+means like {1,2,3,2,1}//palindrome 
+{1,2,3,4,5} //NOt palindrome
+
+here palindrome means it must compare first element and last element and come to middle by compareing ..
+Edge cases:
+if arr.length=1  then return palindrme ..
+negative numbers can have .So no need of changing the logic ,
+
+pesudo code ,
+get the pointer for left side and pointer on right side of the array :
+then while loop that runs until right is greater than left :
+compare array of left value and array of right value :
+if its same return true else return false;
+increment the left and decrement the right to get closed to the arrays.
+
+
+
+#Sum of the elements in an array
+Edge cases: if array has 1 element return the same element ,
+take one sum as variable and give default value as 0,
+then iterate over each elements and add it to the sum variable
+
+
+#Find second largest element
+(My Approach ):- first find the largest element .. then 
+initialize new array , and compare the array with the largest element like if the element is not the largest then add the elements o new arry .
+then initalize variable for second largest element,
+and find the largest element in that and return ..
+
+
+
+#find if the array is sorted or not
+edge case if array length is 1 return as sorted..
+then take one boolean like isSorted and set it true ,
+then iterate usig for loop
+compare the adjancent element like if current elem is greater than next element then return 
+isSorted =true else isSorted =false;
+
+
+
+#Java Excpetions 
+Checked expections are the exception that occur at compile time like IOException or SQLException ..Which is good so, u can  handle before itself
+and java actually suggests u to handle those exceptions ..
+The programmer must either handle or declare these exceptions using the throws keyword.
+
+Unchecked Exceptions are the Exceptions that occurs during the run time , And those exceptions are like ArrayOutOfBoundException ,DivideByZero Exceptions etc ..
+
+
+What is an Error :- Serious issue that causes the breakdown of the program
+
+So to handle those use try-catch block -These try catch bloacks are used for smooth functioning of the program even if there is an risk of any Exceptions
+*)try block :- It tries to execute the certain part of the code that might throw an errors
+*)catches :- it will catch those error impoed by the try block and those error must be handled by the catch block.
+*)finally:-It executes the part of code that has no connection like try or catch block like it will always execute.
+
+
+#Xeception Hiearchy :-
+*)Thowable:-It is the super class of all the classes of Exception, it has two subclasses like 
+*)Errors:FOr Serious Problems beyond programs's control
+*)Exception:-It is used to handle runtime errors
+
+Declaring Exceptions:-
+If a method can throw a certain exception , You can use try-catch block or u can use a throws keyword in the method like
+eg, 
+public void getNum() throws DivideByZeroException {
+    //block of code
+}

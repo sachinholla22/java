@@ -1,0 +1,176 @@
+In java Heap memory and Stack memory are the 2 types os memory used for storing data.But they have different Purposes and behaviour,
+
+Stack Memory:
+Its is used for storing local Variables and methods calls. It stores the data for method execution 
+and keeps track of function calls and returns.
+
+How it Works:
+WHenever a method is called , a new stack frmae is created for that method and when method finishes , its stack frame is removed.
+The stack operates as Last In First Out and also vice versa as FILA
+
+key characteristics :
+*)Memory is automatically managed.
+*)It is fast and limited in size.
+*)Variables stores in the stack are primitive types and references to object in the heap.
+*) Stack will be in key-value pair in the memory
+Example
+public class StackExample {
+    public static void main(String[] args) {
+        int a = 5;  // Local variable stored in stack
+        int b = 10; // Local variable stored in stack
+        int sum = add(a, b);  // Method call, new stack frame created
+        System.out.println(sum);
+    }
+
+    public static int add(int x, int y) {  // Local variables x, y stored in stack
+        return x + y;
+    }
+}
+
+Note:Every method we use have its own stack
+
+Heap Memory :
+The heap is used for storing objects.WHen u create a new object using the new Keyword, it is stored in the heap memory.
+
+How it Works?:-
+Objects are created dynamically and can be accessed by references .Unlike the stack , the heap memory is not tied to method calls.Objects in the heap exists until they are no longer referenced , at which java's Garbage COllector frees up that memory.
+
+
+Key characteristics:
+*)Memory is dynamically allocated and managed by the garbage collector.
+*)It is slower than stack due to overhead of dynamic allocation.
+*)Objects and arrays are stored here.
+*)It Stores the instance variable values
+
+public class HeapExample {
+    public static void main(String[] args) {
+        Person p1 = new Person("Alice"); // Object stored in heap memory
+        Person p2 = new Person("Bob");   // Another object stored in heap memory
+        System.out.println(p1.name);      // Accessing object properties
+    }
+}
+
+class Person {
+    String name;
+     int num=3;
+    Person(String name) {
+        this.name = name;
+    }
+}
+
+
+Note:There is a link between Heap and Stack ..WHile we call the object
+
+
+
+//Access Modifiers
+It determines whether other classes can use a particular filed or invoke a particular method ..It can be public ,private ,protected or default(no modifier)
+
+
+Modifiers            Classe     Package    SUbclass     WOrld
+
+public                Y            Y          Y          Y
+
+protected             Y            Y          Y          N
+
+default(no)           Y            Y          N          N
+
+Private               Y            N          N          N
+
+
+private: The member is only accessible within the class..Its used when u want to keep things hidden and secure inside the class and not 
+letting anything outside the class access it.
+
+
+public : the member is accessible from any class , any package may be same or other package also.
+
+protected:The member is accesible in same package and subclasses and not outsiders
+
+default:If u dont specify any modifier, the member is accessible only within the same package (But not outside the package).
+Its used when u want to accessible to other classes in the same package but hidden from other packages.
+
+
+
+//Constructor
+Its a special method that is used to initalize the object and it must have the same name as classname.
+
+The constructor is Automatically  called when object of a class is created.
+*)Every java class has a Constructor
+
+Key characteristics:
+1)Has same name as class Name.
+2)No Return .
+3)Automatically Called.
+
+Types of Constructors:
+1)Default Constructor
+2)Parameterized Constructor
+
+eg code ,
+class A{
+    int number;
+
+    A(){
+
+        number=69;
+    }
+    
+    void callA(){
+        System.out.println("The Value of Number is "+number);
+    }
+}
+public class PraciceFeb5 {
+    public static void main(String[] args) {
+        A a=new A();
+a.callA();
+
+
+    }
+}
+As u can see the example ..the value is initalized as soon as Object Constructor is called.
+
+If u can comment the contructor A() in the above code , 
+You can get to know that java has default constructor .The value will be 0
+
+
+What is Default Contructor?
+A constructor which does not have any parameter id called Default constructor.
+
+
+For eg ..if u create a Class without a constructor , The compiler itselft creates a constructor
+by its own ,
+
+Eg ,
+class A{                            class A {
+    
+                                      A(){
+
+                                      }        
+                                              
+                                      }
+                -->Compiler  
+}
+
+
+What is Parameterized Constructor ?
+A Constructor through which we can pass one or more parameters is called parameter constrctor.
+
+Eg ,
+
+class X{
+    int x ,y;
+    X(int a,int b){
+        x=a;
+        y=b;
+
+    }
+    void Disp(){
+        System.out.printf("The value of A and B is %d, %d",x,y);
+    }
+}
+public class PraciceFeb5 {
+    public static void main(String[] args) {
+        X x=new X(3,4);
+x.Disp();
+    }
+}
