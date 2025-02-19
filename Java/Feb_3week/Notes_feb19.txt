@@ -1,0 +1,229 @@
+Understand About the Collections ..
+It is an interface where it extends the iterable interface ,  
+the Collection interface contains some methods that are common in all the classes of the collections .
+So let me provide u the example code of the interface 
+
+public interface Collection<E> extends Iterable<E> {
+    int size();                     // Returns the number of elements in the collection
+    boolean isEmpty();               // Returns true if the collection is empty
+    boolean contains(Object o);      // Returns true if the collection contains the specified element
+    Iterator<E> iterator();          // Returns an iterator over the elements in the collection
+    Object[] toArray();              // Returns an array containing all the elements
+    <T> T[] toArray(T[] a);          // Returns an array containing all the elements
+    boolean add(E e);                // Adds an element to the collection
+    boolean remove(Object o);        // Removes a single occurrence of the specified element
+    boolean containsAll(Collection<?> c); // Returns true if the collection contains all elements of the specified collection
+    boolean addAll(Collection<? extends E> c); // Adds all elements from the specified collection
+    boolean removeAll(Collection<?> c); // Removes all elements of the specified collection
+    boolean retainAll(Collection<?> c); // Retains only elements that are contained in the specified collection
+    void clear();                    // Removes all elements from the collection
+}
+
+ 
+then there is a AbstractList Class that provides the skeletal implementations for the List interface 
+It provides basic functionality for working with lists but does not implement all methods (it leaves some methods to be defined by subclasses).
+
+public abstract class AbstractList<E> extends AbstractCollection<E> implements List<E> {
+    protected AbstractList() {
+    }
+
+    public abstract E get(int index);
+    public abstract E set(int index, E element);
+
+    @Override
+    public void add(int index, E element) {
+        throw new UnsupportedOperationException("add(index, element) not supported");
+    }
+
+    @Override
+    public E remove(int index) {
+        throw new UnsupportedOperationException("remove(index) not supported");
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        return indexOf(o) >= 0;
+    }
+
+    @Override
+    public int size() {
+        // Calls size method from AbstractCollection
+        return super.size();
+    }
+
+    // Abstract methods to be implemented by subclasses
+    public abstract int indexOf(Object o);
+    public abstract int lastIndexOf(Object o);
+}
+
+
+List interface is part of java.util and defines a collections of methods for manipulation ordered collections (lists).
+public interface List<E> extends Collection<E> {
+    void add(int index, E element);
+    boolean add(E e);
+    E get(int index);
+    E remove(int index);
+    int size();
+    boolean contains(Object o);
+    boolean isEmpty();
+    // other methods...
+}
+
+ArrayList is a part of java.util, and it implements the List intrface .Internally it uses an array to store elements , and it dynamically,
+resizes the array as needed.
+
+public class ArrayList<E> extends AbstractList<E> implements List<E> {
+    private Object[] elementData;  // Array to store the elements
+    private int size = 0;          // Number of elements in the list
+
+    public ArrayList() {
+        elementData = new Object[10];  // Initial capacity of 10
+    }
+
+    @Override
+    public void add(int index, E element) {
+        // Implementation to add an element at a specific index
+    }
+
+    @Override
+    public boolean add(E e) {
+        ensureCapacity(size + 1);  // Ensure there's enough space
+        elementData[size++] = e;   // Add the element
+        return true;
+    }
+
+    @Override
+    public E get(int index) {
+        if (index >= size) throw new IndexOutOfBoundsException();
+        return (E) elementData[index];
+    }
+
+    @Override
+    public E remove(int index) {
+        // Implementation to remove an element at a specific index
+    }
+
+    @Override
+    public int size() {
+        return size;
+    }
+
+    private void ensureCapacity(int minCapacity) {
+        if (minCapacity > elementData.length) {
+            int newCapacity = elementData.length * 2;  // Double the capacity
+            elementData = Arrays.copyOf(elementData, newCapacity);
+        }
+    }
+}
+
+
+LinkedList also implements the List interface , but it uses a doublt linked list to store elements.
+
+
+public class LinkedList<E> extends AbstractSequentialList<E> implements List<E> {
+    private transient Node<E> first;  // First node in the list
+    private transient Node<E> last;   // Last node in the list
+    private int size = 0;             // Number of elements in the list
+
+    // Node class to represent each element in the list
+    private static class Node<E> {
+        E item;
+        Node<E> next;
+        Node<E> prev;
+        Node(Node<E> prev, E element, Node<E> next) {
+            this.item = element;
+            this.next = next;
+            this.prev = prev;
+        }
+    }
+
+    @Override
+    public boolean add(E e) {
+        linkLast(e);
+        return true;
+    }
+
+    private void linkLast(E e) {
+        final Node<E> l = last;
+        final Node<E> newNode = new Node<>(l, e, null);
+        last = newNode;
+        if (l == null)
+            first = newNode;
+        else
+            l.next = newNode;
+        size++;
+    }
+
+    @Override
+    public E get(int index) {
+        if (index >= size) throw new IndexOutOfBoundsException();
+        Node<E> x = node(index);
+        return x.item;
+    }
+
+    private Node<E> node(int index) {
+        Node<E> x = first;
+        for (int i = 0; i < index; i++) {
+            x = x.next;
+        }
+        return x;
+    }
+
+    @Override
+    public int size() {
+        return size;
+    }
+}
+
+
+So Collection Interface is like the buleprint for all kinds of collections in java (lists,sets,queues).It defines the basic 
+methods for adding ,removing and checking elements etc.Its like saying Every Collections should know how to add items ,remove items and check if an item is there.
+
+List interface: 
+The List interface is a special type of collection that allows you to store items in a specific order. It means that elements in a list can have a position (like a numbered slot). 
+A List also allows duplicate elements (like having multiple "1" items). Think of it as a list of items where order and repetitions matter.
+
+AbstractList Class:
+This is a basic class that gives you some basic behavior for working with lists. It's not fully usable on its own, but it provides shared functionality 
+(like how to access elements by index) that other classes can use or build on. You can think of it like a partially-built house, where the blueprint is there but still needs more work before it’s ready to live in.
+
+In short:
+
+Collection is the umbrella for all collections.
+List is a specific type of collection that cares about order and duplicates.
+AbstractList is a base class to help create lists.
+ArrayList is a concrete implementation of a list, backed by an array.
+
+
+SETS in Java .
+Sets interface is part of the java.util package and extends the COllection interface .
+It doesnt allow the duplicates elements,
+The main implementations of the Set inteface are:
+ HashSet :Stores elements in hash table , providing acceess very fast but no gurantee of order.
+ LinkedHashSet:Maintains a linked list of the entries ,ensuring insertion order.
+ TreeSet:Stores elements in a red-black tree ensuring that elements are sorted in natural order or by a specified comparator.
+
+
+ Queue Interface :
+ The Queue interface is also from java.util package and extnds the Collection interface .It represents a collection of the elements in 
+ the order like First In FIrst Out Principle.
+ Operations :-
+ offer(E e): Adds an element to the queue.If the queue is full , it returns false.
+  poll(): Removes and returns the front element of the queue. If the queue is empty, it returns null.
+peek(): Returns the front element without removing it. Returns null if the queue is empty.
+remove(): Removes and returns the front element. If the queue is empty, it throws an exception (NoSuchElementException).
+
+
+Implementations of Queue in Java:
+LinkedList:A commonly used implementation of the Queue interface .It allows efficinet insertion and removal of elements at both ends.
+PriorityQueue: A queue that orders elements according to their natural ordering or by a specified comparator.
+ArrayDeque: A resizable array implementation of the Deque interface, which implements Queue as well.
+
+Queues are commonly used in scenarios where data needs to be processed in the order it was received. such as 
+*)Task Scheduling
+*)Print JOb management
+*)Simulation of real-world queues(e.g ticket counters or call center systems)
+
+
+
+

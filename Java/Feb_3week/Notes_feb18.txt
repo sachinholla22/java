@@ -1,0 +1,463 @@
+Key Concepts of Error Handling in Java:
+*)Exception:An Object that represent an error or abnormal condition during the execution ..It is a subclass of Throwable.
+It is also known as runtine error.
+*)Throwable :The superclass of all errors and exceptions in Java. It has two main subclasses:
+-Error:Rpresent serious issue that a program cant typically recover from .
+-Exception:Represents a condition that a program might be able to handle .
+
+*)Checked Exception :These are the exceptions that must be either caugh or declared in the method signature .
+Eg, IOException,SQLException etc.
+syntax- throws ExceptionTYpe
+
+*)Unchecked Exceptions: These exceptions dont have to be explicitly caught or declared .They are usually programming bugs
+(eg. NullPointException)
+-)They inherit from RuntimeException.
+
+ *)Try-catch block :Used to handle excepions.
+ *)Finally Block: A block of code that runs regardless of whether an exception was thrown or not .
+
+ *)Throw Statement :Used to explicitly throw an exception.
+ *)Throws Keyword:Used in method declarations to specify that a method may throw an exception.
+
+
+Best Practices :
+Handle Exceptions Properly :Dont catch general exceptions (Like Exception) unless necessary .Always try to catch more specific exceptions.
+
+Use FInally for cleanup : Always use the finally block to release resources , even if an exception occurs ,
+
+
+Note:- If u explicitly throw an exception inside the method , it is important to declare the throws keyword also,
+in the method signature ..
+
+
+
+JAVA COLLECTIONS :=
+These are like containers that hold and manage groups of objects.These containers help you to store ,organize and manipulate data in  structured way.
+Instead of Writinf complex code to manage a list of items or a set of unique objects , Java Provides built-in classes to handle these tasks for u.
+
+It consists of ,
+*)LISTS
+*)SET
+*)MAP
+*)QUEUE
+*)STACK
+
+Java collections provide many methods to add ,remove or find items,and each type is optimized for different tasks.They are part of the Java Standard library which makes them easy to use and 
+very useful for everyday programming.
+
+
+Key Concepts:-
+Collection interface:- THe root interface in the collection hierarchy .It defines methods for basic operations such as adding
+,removing  and quering elements. 
+Common Subinterfaces of Collections include List, Set,Queue.
+
+2)List :- It is a collection of type that allows duplicates and maintains the order of elements .
+eg,ArrayList ,LinkedList ,Vector etc .
+Common operations:-Add,remove ,get and set element by index .
+
+3)Set:- A collection that does not allow duplicates and does not maintain any specific order.
+Eg, HashSet,TreeSet,LinkedHashSet,
+Common Operations : Add,remove and check if an element is present
+
+4)Queue :-A collection designed for holding elements that will be processed in a specific order (eg ,FIFO)
+Eg,PriorityQueue, LinkedList (can be used as Queue).
+Common operations :- Add ,remove and peek at elements.
+
+5)Map:-A collection of key-value pairs where each key maps to a specific value.
+Examples: HashMap, TreeMap, LinkedHashMap.
+Common Practices:- Put(add),get(retrieve),remove and check if a key exists.
+
+6)Iterator : An object that allows u to traverse through a collection.
+You can use Iterator to loop through a collection and remove elements during iteration.
+
+
+Advantages of Using Java Collections:-
+Code simplicity :- Using built-in data structures avoids the need to write custom code for managing collections.
+Flexibilty:-You can choose most appropriate collection based on problem ur solving,
+Performance:-The framework offers high performance 
+
+
+LIST:-
+List is an interface that comes with java.util package which is designed to maintain the order of the elements and also 
+unlike sets (unique elements),Lists can contain the duplicate elements .It maintain the order of insertion ,meaning elements are stored and retreived in the same order
+they were added.
+
+Eg,
+ArrayLst:- A resizable array implementation of the List interface.
+LinkedList :- A doubly - linked list implementation os List interface.
+Vector:-  A legacy class similiar to ArrayList but is synchronized .
+Stack: A subclass of Vector that represents a stack (LIFO).
+
+List interface:-
+The List Interface inherits from the collection interface and provides several methods to manipulates elemetns.
+
+Important mehods in the list interface :-
+add(E e):Adds an element to the end of the list ,
+add(int index,E element): Adds an element at a specified index,
+get(int index):Retrives the element at a specified index.
+set(int index, E element):Replaces the element at a specified index with the new element .
+remove(int index):Rmoves elemenet,
+size():Returns the numer of elements in the list
+contians(Object o):Checks if the list contains the specified element.
+indexOf(Object o):Returns the index of first occurence of element.
+clear():removes all the elements from the list.
+isEmpty():Checks if the list is empty.
+toArray():converts the list to array.
+
+
+Types of Lists in Java :
+ArrayList :-Commonly used implementation of the List interface .
+*)It is backed y dynamically resizable array.
+*)It provides constant time performance for get() and set() methods 
+*)It is not synchronized means its not thread safe ..If u need thread safe , u need to use alternatves like CopyOnWriteArrayList or 
+synchronize manually
+
+import java.util.*;
+
+public class ArrayListExample {
+    public static void main(String[] args) {
+        // Create an ArrayList
+        List<String> fruits = new ArrayList<>();
+        
+        // Add elements to the list
+        fruits.add("Apple");
+        fruits.add("Banana");
+        fruits.add("Cherry");
+        
+        // Display the list
+        System.out.println("Fruits List: " + fruits);
+        
+        // Access elements by index
+        System.out.println("First fruit: " + fruits.get(0));
+        
+        // Remove an element
+        fruits.remove("Banana");
+        System.out.println("After removal: " + fruits);
+        
+        // Size of the list
+        System.out.println("Size of the list: " + fruits.size());
+        
+        // Check if list contains an element
+        System.out.println("Contains 'Apple': " + fruits.contains("Apple"));
+    }
+}
+
+
+2)LinkedList :-It uses a doubly linked list to store elements .
+It allows constant-time insertions or removals of elementts from both ends of he list
+It provides additional methods to implement stack and queue behaviour 
+It is slower than ArrayList for random access due to its linked structure but faster for insertion and deletion at the ends.
+import java.util.*;
+
+public class LinkedListExample {
+    public static void main(String[] args) {
+        // Create a LinkedList
+        List<String> vegetables = new LinkedList<>();
+        
+        // Add elements to the list
+        vegetables.add("Carrot");
+        vegetables.add("Potato");
+        vegetables.add("Tomato");
+        
+        // Display the list
+        System.out.println("Vegetables List: " + vegetables);
+        
+        // Add an element at the beginning
+        ((LinkedList<String>)vegetables).addFirst("Cucumber");
+        System.out.println("After adding First: " + vegetables);
+        
+        // Add an element at the end
+        ((LinkedList<String>)vegetables).addLast("Onion");
+        System.out.println("After adding Last: " + vegetables);
+        
+        // Remove the first element
+        ((LinkedList<String>)vegetables).removeFirst();
+        System.out.println("After removing First: " + vegetables);
+        
+        // Remove the last element
+        ((LinkedList<String>)vegetables).removeLast();
+        System.out.println("After removing Last: " + vegetables);
+    }
+}
+
+3. Vector
+Vector is a legacy class similar to ArrayList, but with one key difference: it is synchronized, making it thread-safe.
+It is generally slower than ArrayList due to the overhead of synchronization, and it is rarely used in modern Java applications in favor of ArrayList or other more efficient thread-safe alternatives.
+import java.util.*;
+
+public class VectorExample {
+    public static void main(String[] args) {
+        // Create a Vector
+        List<String> colors = new Vector<>();
+        
+        // Add elements to the list
+        colors.add("Red");
+        colors.add("Green");
+        colors.add("Blue");
+        
+        // Display the list
+        System.out.println("Colors Vector: " + colors);
+        
+        // Synchronization is handled by the Vector class
+        synchronized(colors) {
+            for (String color : colors) {
+                System.out.println(color);
+            }
+        }
+    }
+}
+
+
+. Stack
+Stack is a subclass of Vector that represents a stack data structure. It follows the Last In, First Out (LIFO) principle.
+The methods push(), pop(), peek() allow you to manage elements in a stack-like manner.
+Example of Using Stack:
+java
+Copy
+import java.util.*;
+
+public class StackExample {
+    public static void main(String[] args) {
+        // Create a Stack
+        Stack<String> books = new Stack<>();
+        
+        // Push elements onto the stack
+        books.push("Java Programming");
+        books.push("Data Structures");
+        books.push("Algorithms");
+        
+        // Display the stack
+        System.out.println("Stack: " + books);
+        
+        // Pop an element from the stack
+        System.out.println("Popped item: " + books.pop());
+        System.out.println("Stack after pop: " + books);
+        
+        // Peek at the top element without removing
+        System.out.println("Top item: " + books.peek());
+    }
+}
+
+
+
+SET:-
+
+It is a Java Collections that does not allow duplicate elements that means all the elements are unique here and also ther is no order of elements.
+It is a part of java collection framework and extends the Collection Interface 
+
+
+Important Implementation of Set:
+1.HashSet
+*)Backed by hash table.
+*)Provides constant time performance(0(1)) for basic operations like ,add, remove ,contains and size 
+*)DOes not maintain any order ...
+*)NOt synchronized.
+
+2.LinkedHasSet.
+Extends Hashset ,but maintains the order of elements based on their insertion order.
+
+3)TreeSet.
+Implements the NavigableSet interface and is backed by a Red-Black tree.
+Provides O(log n) time complexity for most operations
+
+
+
+Methods Common to All Set Implementations:
+add(E e): Adds an element to the set. If the element already exists, it is not added again.
+remove(Object o): Removes the specified element from the set.
+contains(Object o): Checks if the set contains the specified element.
+size(): Returns the number of elements in the set.
+isEmpty(): Checks if the set is empty.
+clear(): Removes all elements from the set.
+iterator(): Returns an iterator over the elements in the set.
+Detailed Examples of Each Type of Set:
+1. HashSet
+HashSet is the most commonly used Set implementation. It is based on a hash table and doesn't guarantee any order.
+
+Example of HashSet:
+java
+Copy
+import java.util.*;
+
+public class HashSetExample {
+    public static void main(String[] args) {
+        // Creating a HashSet
+        Set<String> fruits = new HashSet<>();
+        
+        // Adding elements to the set
+        fruits.add("Apple");
+        fruits.add("Banana");
+        fruits.add("Cherry");
+        fruits.add("Banana");  // Duplicate will not be added
+        
+        // Display the set (no guarantee of order)
+        System.out.println("HashSet: " + fruits);
+        
+        // Checking if a specific element is present
+        System.out.println("Contains 'Apple': " + fruits.contains("Apple"));
+        
+        // Removing an element
+        fruits.remove("Apple");
+        System.out.println("After removal: " + fruits);
+        
+        // Size of the set
+        System.out.println("Size: " + fruits.size());
+    }
+}
+Output:
+
+yaml
+Copy
+HashSet: [Banana, Apple, Cherry]
+Contains 'Apple': true
+After removal: [Banana, Cherry]
+Size: 2
+Explanation:
+
+HashSet does not allow duplicates, so "Banana" was only added once.
+The order of elements in the set may not match the insertion order, as it uses hashing internally.
+2. LinkedHashSet
+LinkedHashSet is similar to HashSet, but it maintains the order of elements based on their insertion sequence.
+
+Example of LinkedHashSet:
+java
+Copy
+import java.util.*;
+
+public class LinkedHashSetExample {
+    public static void main(String[] args) {
+        // Creating a LinkedHashSet
+        Set<String> fruits = new LinkedHashSet<>();
+        
+        // Adding elements to the set
+        fruits.add("Apple");
+        fruits.add("Banana");
+        fruits.add("Cherry");
+        fruits.add("Banana");  // Duplicate will not be added
+        
+        // Display the set (insertion order is preserved)
+        System.out.println("LinkedHashSet: " + fruits);
+        
+        // Checking if a specific element is present
+        System.out.println("Contains 'Apple': " + fruits.contains("Apple"));
+        
+        // Removing an element
+        fruits.remove("Apple");
+        System.out.println("After removal: " + fruits);
+        
+        // Size of the set
+        System.out.println("Size: " + fruits.size());
+    }
+}
+Output:
+
+yaml
+Copy
+LinkedHashSet: [Apple, Banana, Cherry]
+Contains 'Apple': true
+After removal: [Banana, Cherry]
+Size: 2
+Explanation:
+
+LinkedHashSet maintains the order of insertion, so elements are returned in the same order they were added.
+3. TreeSet
+TreeSet is a sorted set that stores elements in ascending order (or according to a custom comparator).
+
+Example of TreeSet:
+java
+Copy
+import java.util.*;
+
+public class TreeSetExample {
+    public static void main(String[] args) {
+        // Creating a TreeSet
+        Set<Integer> numbers = new TreeSet<>();
+        
+        // Adding elements to the set
+        numbers.add(50);
+        numbers.add(10);
+        numbers.add(30);
+        numbers.add(20);
+        numbers.add(10);  // Duplicate will not be added
+        
+        // Display the set (elements are sorted in ascending order)
+        System.out.println("TreeSet: " + numbers);
+        
+        // Checking if a specific element is present
+        System.out.println("Contains 30: " + numbers.contains(30));
+        
+        // Removing an element
+        numbers.remove(10);
+        System.out.println("After removal: " + numbers);
+        
+        // Size of the set
+        System.out.println("Size: " + numbers.size());
+    }
+}
+Output:
+
+yaml
+Copy
+TreeSet: [10, 20, 30, 50]
+Contains 30: true
+After removal: [20, 30, 50]
+Size: 3
+Explanation:
+
+TreeSet sorts the elements in ascending order.
+It also does not allow duplicates, as seen with the duplicate 10.
+Set Operations:
+In addition to the standard methods like add(), remove(), contains(), and size(), you can also perform various set operations such as:
+
+Union: Combine two sets (use addAll()).
+Intersection: Get common elements between two sets (use retainAll()).
+Difference: Get elements that are in one set but not the other (use removeAll()).
+Subset: Check if one set is a subset of another (use containsAll()).
+Example of Set Operations:
+java
+Copy
+import java.util.*;
+
+public class SetOperationsExample {
+    public static void main(String[] args) {
+        Set<String> set1 = new HashSet<>();
+        set1.add("Apple");
+        set1.add("Banana");
+        set1.add("Cherry");
+
+        Set<String> set2 = new HashSet<>();
+        set2.add("Banana");
+        set2.add("Date");
+        set2.add("Elderberry");
+
+        // Union (set1 U set2)
+        Set<String> union = new HashSet<>(set1);
+        union.addAll(set2);
+        System.out.println("Union: " + union);
+
+        // Intersection (set1 ∩ set2)
+        Set<String> intersection = new HashSet<>(set1);
+        intersection.retainAll(set2);
+        System.out.println("Intersection: " + intersection);
+
+        // Difference (set1 - set2)
+        Set<String> difference = new HashSet<>(set1);
+        difference.removeAll(set2);
+        System.out.println("Difference: " + difference);
+
+        // Subset (set1 ⊆ set2)
+        System.out.println("set1 is a subset of set2: " + set1.containsAll(set2));
+    }
+}
+Output:
+
+vbnet
+Copy
+Union: [Apple, Banana, Cherry, Date, Elderberry]
+Intersection: [Banana]
+Difference: [Apple, Cherry]
+set1 is a subset of set2: false
+
+
+Note:- Iterable is the root interface in the java collections hierarchy . Then comes the Collections
+So iterable is nothing but the for each loop to iterate the elements

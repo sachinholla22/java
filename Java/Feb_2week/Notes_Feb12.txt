@@ -51,7 +51,7 @@ Hence , it imporves the code readability and reduces redundncy by usin same meth
 *)Method overriding :-It solves the issue like subclass needs a customized behaviour withour changing the original class,
 Hence it provides flexible and dynamic approach.
 
-*)INheritance solves the problem of code reusablity ..It allows child cass to inherit the properities 
+*)INheritance solves the problem of code reusablity ..It allows child class to inherit the properities 
 and method from another class, Also reduces redundancy
 
 *)Encapsulation solves the problem of data security and integrity.
@@ -63,5 +63,31 @@ Hence , it allows extensibility and flexibilty.
 *)Abstaction :- Solves the problem of needing to provide a simple interface while hiding the complexity underneath.
 Hence it provides better maintaibabilty and flexibility.
 
-*)INterface :-It helps achieving abstraction and also the 
+*)INterface :-It helps achieving abstraction and also if u want to add multiple inheritance and u want a method signature expected
+
+
+public class BankAccount {
+    private double balance;
+
+    // Constructor to initialize the balance
+    public BankAccount(double initialBalance) {
+        this.balance = initialBalance;
+    }
+
+    // Method to withdraw money
+    public void withdraw(double amount) throws InsufficientBalanceException {
+        if (amount > balance) {
+            // Throw custom exception if the balance is insufficient
+            throw new InsufficientBalanceException("Insufficient balance for withdrawal.");
+        } else {
+            balance -= amount;
+            System.out.println("Withdrawal successful! Remaining balance: " + balance);
+        }
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+}
+
 
