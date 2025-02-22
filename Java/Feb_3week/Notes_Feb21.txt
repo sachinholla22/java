@@ -1,0 +1,99 @@
+In java ,Super keyword is used to refer to the superclass(parent class) of the current object.
+Its often used in the following contexts.
+
+
+1)Accessing the Parent Class Constructor: You can use super() to call a constructor from the parent class.
+2)Accessing Parent Class Methods and fileds:- You can use super.methodName() or super.fieldName to refer to methods or fields of parent class
+
+Purpose of super:
+*)To access or call members (fileds or methods) of the parent class.
+*)To invoke constructor of the parent class to initialize the parent class part of the object.
+
+
+By default Every Constructor will have the super() methods declared (Which we cant see),like even if we dont mention it will be there.
+
+And if u have like this , super() will be there by default
+class A{
+    A(){
+        
+        system.out.print("Heelo");
+    }
+}
+
+//here the first thing it will see while executing is super() and not system.out
+
+Super simply means call the constructor from the super class.
+
+
+class A{
+    public A(){
+        System.out.println("This is From A");
+    }
+     A(int a){
+         System.out.println("int a");
+    }
+}
+class B extends A{
+    B(){
+        super(6);
+        System.out.println("This is from B");
+    }
+B(int b){
+    super(b);
+    System.out.println("Int from B");
+}
+
+}
+For this example,
+We all know the subcasss (B in this case ) will have super method automatically called ,
+but what about A? Ya we know A class also has super() keyword in the constructor,
+
+So every class in java extends Object (We all know).Even if u dont mention , it is extending..
+So superclass will call the super() constructor of the Object class
+
+
+this() keyword:-This will execute the constructor of the same class .like if u want to execute both 
+constructor of the same class  (default and parameterized ).use "this()";
+
+
+class B {
+    B(){
+        sout("Hello");
+    }
+    B(int b){
+        this();
+        sout("Hello from b constrcutr")
+    }
+}
+
+so when u call the parametrized constructor in the object , it will execute both.
+
+
+So summerize super() in Java:
+The super keyword is used to refer to the parent class in several contexts.Its particularly helpful when dealing
+with inheritance and method overloading.
+
+1)Using super() in Constructors:
+Where its used:super() is used in the child class constructor to call a costructor from the parent class.
+
+Purpose: This is needed when the parent class has a constructor with parameters or when u want to initialize the parent 
+class part of the object before the chld class specific intialization.
+
+How it works: When super() is called, it invokes the constructor of the parent class. If you don't explicitly call it, 
+the default constructor of the parent class is invoked (if present).
+
+
+2)Using super.method() to call parent class methods:
+You use super.method() to explicitly call a method from the parent class.
+This is useful when u want to call a method from the parent class in the child class, even if the child class has overridde that method.
+
+
+How it works: If you have overridden a method in the child class, super.method() allows you to access the parent class’s version of that method. 
+If the method is not overridden, it will simply call the parent class's method.
+
+
+3. Using super to Access Parent Class Fields:
+Where it's used: You can use super.fieldName to refer to a field in the parent class.
+Purpose: This is necessary when the child class has a field with the same name as the one in the parent class (name hiding) or if you want to refer
+ to the parent class's field directly.
+How it works: super.fieldName accesses the field in the parent class, even if it is shadowed by a field in the child class.

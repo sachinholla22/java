@@ -5,7 +5,15 @@ class Feb19{
         ForList list=new ForList();
         //list.forArrayLists();
         //list.forLinkedListQueue();
-        list.forSets();
+       // list.forSets();
+       Number num=new Number();
+       //System.out.println(num.sumOfDigits(123498));
+      // num.reverseNum();
+      Palindrom pali=new Palindrom();
+      pali.palidromeString("maddiam");
+
+        
+      
     }
 }
 
@@ -92,5 +100,59 @@ System.out.println(queue.poll());
 
   
 }
+
+
+class Number{
+    public int sumOfDigits(int num){
+        int sum=0;
+        while (num>0){
+
+           int digit =num%10;
+            sum=sum+digit;
+            num=num/10;
+        }
+        
+        return sum;
+    }
+
+    public void reverseNum(){
+        int num = 5392;
+        int reversed = 0;
+        
+        while (num > 0) {
+            int digit = num % 10;
+            reversed = reversed *10+ digit;
+            num = num / 10;
+        }
+        
+        System.out.println("Reversed number: " + reversed);
+    }
+}
+
+class Palindrom{
+    public void palidromeString(String str){
+        char array[]=str.toCharArray();
+        int start=0;
+        int end=str.length()-1;
+        boolean isPalindrome=true;
+
+        while(start<end){
+            if(array[start]!=array[end]){
+isPalindrome=false;
+break;
+
+            }
+            start++;
+            end--;
+            
+        }
+        if(isPalindrome){
+            System.out.println("true");
+        }else{
+            System.out.println("false");
+        }
+    }
+}
+
 
 

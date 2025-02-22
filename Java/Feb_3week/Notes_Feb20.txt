@@ -1,0 +1,177 @@
+Note:-Elements in ArrayLists are actually Object .If we create elements (Objects) of the type "String".
+Remember that a String in Java is an Object (non primitive type). To use other types, such as int , you must specify an equivalent wrapper class,
+like INteger , for other primitive Types use Boolean , Character ,DOuble etc.
+
+Sort an ArrayList :-Use Collections from java.util package which include sort method for sorting lists alphabetically or numerically.
+Eg:
+ ArrayList<String> cars = new ArrayList<String>();
+    cars.add("Volvo");
+    cars.add("BMW");
+    cars.add("Ford");
+    cars.add("Mazda");
+    Collections.sort(cars);  // Sort cars
+    for (String i : cars) {
+      System.out.println(i);
+    }
+
+Reverse the Order:-
+You can sort list in reverse order, by using the reverseOrder() method.
+ Collections.sort(cars, Collections.reverseOrder());
+
+ArrayList vs Linked List .
+The LinkedList class is a collection whic can contain many objects of the same type , just like ArrayList.
+The LinkedList class has all of the same methods as the ArrayList class because they both implement the List interface.This means 
+that you can add items ,change ,remove etc
+
+However, while the ArrayList class and the LinkedList class can be used in the same way, they are built very differently.
+
+How the ArrayList Works:
+The ArrayList class has a regular array inside it .When an element is added , it is placed into the arrray,
+if the array is not big enough , a new , larger array is created to replace the old one and the old one is removed.
+
+How the linkedlist works:-
+The LinkedList stores its items in "containers".The list has a link to the first container and each container has the link to the next container 
+in the list .To add an element to the list , the element is places into a new container and that container is linked to one of the other containers in the list
+
+When To Use
+Use an ArrayList for storing and accessing data, and LinkedList to manipulate data.
+
+
+HashMap:-
+In the ArrayList chapter, you learned that Arrays store items as an ordered collection, and you have to access them with an index number (int type).
+ A HashMap however, store items in "key/value" pairs, and you can access them by an index of another type (e.g. a String).
+
+ One object is used as a key (index) to another object (value).It can store different types: Strin keys and Integer valuesor the same type,like String 
+ key and String values.
+
+ Eg:-
+ import java.util.HashMap; // import the HashMap class
+
+HashMap<String, String> capitalCities = new HashMap<String, String>();
+
+Adding an items in hashmap will be using put() method.
+
+HashMap<String, String> capitalCities = new HashMap<String, String>();
+capitalCities.put("England","London");
+  capitalCities.put("USA", "Washington DC");
+
+
+  Access an Item :-
+  use key for accessing the value
+  capitalCities.get("England");
+
+  Remove an Item:-
+  To remove an item , use the remove() method  and refer the key 
+  capitalCities.remove("England");
+  To remove all items, use the clear() method:
+
+Example
+capitalCities.clear();
+
+HashMap Size
+To find out how many items there are, use the size() method:
+
+Example
+capitalCities.size();
+
+Loop Through a HashMap :We can Loop through the items of a HashMap with a for-each loop.
+Note:Use the keySet() method if u  only want the keys. and use values() method is u only want values.
+
+for(String i:capitalCities.keySet()){
+  System.out.println(i);
+}
+
+for (String i : capitalCities.keySet()) {
+  System.out.println("key: " + i + " value: " + capitalCities.get(i));
+}
+
+Other Types:
+Keys and avalues in a Hashmap are actually Objects. In the examples above, we used object of type "String".
+Remember that a String in Java is an object (not a primitive type). To use other types, such as int, you
+must specify an equivalent wrapper class: Integer. For other primitive types, use: Boolean for boolean, Character for char, Double for double, etc:
+
+Java HashSet
+A HashSet is a collection of items where every item is unique, and it is found in the java.util package:
+
+import java.util.HashSet; // Import the HashSet class
+
+HashSet<String> cars = new HashSet<String>();
+
+Java Iterator:-
+Itrator is an Object that can be used to loop through collections .Like ArrayList and HashSet .It is called an Iteratorbecause iterating is the technical term for looping.
+
+
+Getting an Iterator():-
+iterator() method can be used to get an Iterator for any collections.
+
+ ArrayList<String> cars = new ArrayList<String>();
+    cars.add("Volvo");
+    cars.add("BMW");
+    cars.add("Ford");
+    cars.add("Mazda");
+
+    // Get the iterator
+    Iterator<String> it = cars.iterator();
+
+    // Print the first item
+    System.out.println(it.next());
+
+    //Looping through the collections ...
+    //To loop through collections use the hasNext() and next() methods of the Iterator:
+
+    while(it.hasNext()){
+      sout(it.next());
+    }
+
+hasNext():- method is used to check if there are more elements left to iterator over in the collections .
+It returns a boolean value:true if there is at least once more element to iterate and false if there are no more
+elements.
+
+It helps in avoiding exceptions by checking if the next element is available before attempting to retrive it.
+
+
+next():- This method is used to retrieve the next element in the collections .
+-It returns the element at the current position of the iterator and advances the iterator to next element
+-If the next() is called when there are no more elements (when hasNext() returns false),
+it will throw  a NoSuchElementException.
+
+Note:- The Iterator class must match the type of elements in the collections ur iterating through 
+If you're iterating through a collection of String objects, you need an Iterator<String>.
+If you're iterating through a collection of Integer objects, you need an Iterator<Integer>.
+
+
+Purpose of using Java COllections ? :-
+It makes you to use readymade solutions which makes job easier fr developers.
+
+Example of java real-world examples of collections ,
+IMagine u have list of books and u want to add new books , remove books and check whether the book exists or not .
+
+Problem solved: Withour Java collections , u would have to create ur own methods to manage this list .But with collections
+you can simply call the classeslike ArrayList or Hashset 
+
+2. Efficient Searching and Sorting
+Say you have a long list of numbers, and you want to find out if a certain number exists or to sort the numbers in order.
+
+Problem Solved: Collections like HashMap or TreeSet help with quick searching and sorting, so you don’t have to go through each item one by one. This saves a lot of time, especially if the data is large.
+
+Real-world example:
+Looking for a contact in your phone’s contact list. The phone uses efficient algorithms to find the person’s number instantly, even if you have hundreds of contacts.
+
+
+3. Handling Groups of Data with Different Needs
+Sometimes, you need different ways to organize your data. For example, you might want to keep track of customers and their orders. For that, you need both a list of customers and a way to map them to their orders.
+
+Problem Solved: Collections like HashMap allow you to pair things together, like storing customer names as keys and their orders as values.
+
+Real-world example:
+In an online store, each customer (key) has a shopping cart (value). You want to know which items each customer has in their cart.
+
+4. Removing Duplicate Items
+If you're collecting data, you might end up with duplicates. For example, if you have a list of emails and some are repeated, you want to keep only one instance of each.
+
+Problem Solved: Collections like HashSet automatically ensure that no duplicate items are stored, so you don’t have to manually check for duplicates.
+
+Real-world example:
+Imagine collecting the names of people attending a party. You wouldn't want to invite the same person twice. A set automatically handles this for you.
+
+
