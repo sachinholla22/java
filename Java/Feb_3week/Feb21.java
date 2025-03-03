@@ -22,7 +22,9 @@ Practice prac=new Practice();
 int arr[]={6,3,1,9,5};
 //prac.sortArray(arr);
 // prac.sumOfEvenOdd(arr);
-prac.getFrequencey();
+//prac.getFrequencey();
+System.out.println(Thread.currentThread().getName());
+System.out.println(Thread.currentThread().getPriority());
     }
 }
 

@@ -1,0 +1,63 @@
+Can we override static method in java?
+No we cant override static methods because its associated with the class itself .
+
+Synchronization:
+It is a technique used by java thread ,used to control the access from a shared resource by multiple threads.
+When multiple thread try to access the same data or a resource at the same time , there might be a data or
+resource so to prevent that we can use Synchronization. It ensure only one thread can access the shared resource at 
+a time ..think like its a lock to a shared resource. When one thread is working on it , the other thread cannot access
+until the first thread finished the task.
+
+
+
+Normal java method and thread class method (run()) : What it actually does inside ?
+
+When u call normal method of another class inside the main method ,it will automatically runs on the main
+thread synchronously because there is no concurrency  methods involved..
+
+When start() a thread , a  separate thread is created from its name eg,Thread-0 etc .
+
+Key Difference between normal method and Thread run() method  is ,
+
+Normal method executed synchronously in the main thread of the program .Its just a regular function that executes one
+after the other.
+
+Thread (run()) method :Executes asynchronously in a separate thread, allowing for concuurent or parallel execution .Th 
+run() method is unit of work that will be executed in a different thread than a main thread.
+
+
+Difference between synhronous and Asynchronous. 
+
+Synchronous means the tasks are executed one after the other in a sequential order..Each task must finish before the next one
+starts.If u have multiple tasks , the program waits for one task to finish before moving on the next task.
+
+Asynchronous means that the tasks can start before the previous tasks finishes. The program doesnt have to wait for one task to finish 
+before moving to the nxt task.
+
+
+Race Conditon : When multiple thread try to access the shared resource it will be resulted in Race condition , it will result in incorrect 
+data results.
+
+So synchronized keyword means locking the the resource which is occupied by certain thread.
+
+There are two types of locks , 
+Intrinsic locks 
+Explicit locks 
+
+
+Intrinsic locks:-
+These are built into every objects in Java. You dont see them , but they are there.
+When u use a synchronized keyword , u r using these automatic locks. So when u use synchronized keyword,
+its automatically done..this lock is also known as monitor.
+synchronized keyword is used like in the case for the methods and blocks.
+For blocks, the syntax is like ,
+synchronized (this){
+
+}
+
+
+Exterinsic locks : These are more advanced locks u can control yourself using the Lock class from java.until.concurrent.locks.
+You explicitly say when to lock and unlock, givin u more control over how and when people can wirte in the 
+notebook.
+It has lock interface and lock classes like ReentrantLock ReadWriteLock etc..
+THese locks are managed by the developer like when to use them or not to use them etc

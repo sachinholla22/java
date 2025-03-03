@@ -1,0 +1,115 @@
+WHAT IS A THREAD in Java ?
+A thread in java is like a single line of execution in a program.Think like its a task or a job that a program 
+needs to do.In a simple program ,there's usually one thread that runs but a program can have multiple threads
+doing different tasks at the same time.
+
+Simple example of a thread:=
+
+class MyThread extends Thread{
+    public void run(){
+         System.out.println("This is a thread running.");
+    }
+
+        public static void main(String[] args) {
+        MyThread t = new MyThread();
+        t.start();  // Starting the thread
+    }
+}
+
+In this example :-
+*)We created a new class MyThread that extends Thread.
+*)We override the run() method to define what the thread will do when it runs.
+*)We call t.start() to start the thread , which will execute the run() method.
+
+Multithreading in Java:-
+Multithreading means running multiple threads at the same time within a program.It allows you to do several things
+simultaneously,which makes program faster and more efficient ,especially when there are tasks that dont depend 
+on each other.
+
+
+Note when we write java code and compile , it converts into bytecode using these procedure:
+Loading the bytecode.
+Verifying the bytecode (security checks).
+Interpreting or JIT (Just-in-Time) compiling the bytecode into machine code.
+Memory management (using the heap and stack).
+Garbage collection (automatic memory management).
+Execution of bytecode instructions on the machine’s hardware.
+
+
+And the role of JRE is :-
+it provides the dependencies and libraries required for the program to convert it to bytecode ,
+it includes jvm itself ,
+*)Standard libraries like java.util,java.io,java.lang etc .
+*)Other resources like configurations files and supporting files needed to run Java applications.
+
+JRE doesnt contain development tools like the compiler(javac), but it provides everything needed to runjava applications
+
+Okay now coming back to Threading,
+In java , by default the objects we create in main methods right , all are signle threaded (sequentially executed),
+Because both actions happen one after the other in same thread(the main thread).
+
+So by default, Java Programs  execute in a single thread unless you specifically create multiple threads (for example, by using Thread or Runnable).
+
+Note:-In Every Thread , You must have run() method because you call the reference of the object by start() method inside the main function.
+
+Threads might contain methods like ,
+1)start():- This method starts the execution of the thread.It calls the run() method internally.
+*)A thread can only be started once.
+
+2)run():-This method contains the code that will be executed by the thread when it is started.
+-The run() method is meant to be overridden by the thread class.
+-It is automatically when you invoke start();
+
+3)sleep(long milliseconds):-
+-This method pauses the current thread for the specified number of milliseconds.
+-Its used when u want a thread to wait for a certain period without using CPU time.
+
+4)interrupt():-
+-This method is used to interrupt a thread.If the thread is in a waiting or sleeping state, it will be awakened.
+-It doesnt stop the thread direclty but marks it as interrupted.
+
+5)isAlive()
+-This method checks if the thread is still alive (i.e, it has been started but has not yeth finished executing).
+if (t.isAlive()) {
+    System.out.println("Thread is still running.");
+}
+
+6)join()
+-This method makes the current thread wait until the thread on which join() is called finishes its execution.
+-Its useful when u want the main thread to wait for the completion of other threads.
+t.join();  // Main thread waits for t to finish
+
+7)setPriority(int priority):
+-This method sets the priority of the thread , where the higher priority threads are given preference to execute over lower
+priority ones.
+-The priority must be between Thread.MIN_PRIORITY (1) and Thread.MAX_PRIORITY (10).
+
+t.setPriority(Thread.MAX_PRIORITY);  // Set maximum priority
+
+8)getName()
+
+This method returns the name of the thread.
+
+String name = t.getName();
+System.out.println("Thread name: " + name);
+
+
+9)setName(String name);
+-This method sets the name of the thread.
+
+10)currentThread():
+-This method returns a reference to the currently executing thread (the thread that calls this method).
+
+Thread current = Thread.currentThread();
+System.out.println("Current Thread: " + current.getName());
+
+11) yield()
+This method causes the currently executing thread to temporarily pause and allow other threads of the same priority to execute.
+It’s a way for a thread to "yield" control, but it doesn’t guarantee that the other thread will start immediately.
+Thread.yield();  // Yield the current thread's execution
+
+12. setDaemon(boolean on)
+This method marks the thread as a daemon thread if the argument is true.
+Daemon threads are automatically terminated when all non-daemon threads finish. They are used for background tasks (e.g., garbage collection).
+
+t.setDaemon(true);  // Make the thread a daemon thread

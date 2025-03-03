@@ -1,0 +1,34 @@
+If u give Thread.currentThread() , it will display or show the results of currently executing
+method or class ..Like if u have one Thread class and make instance of it in the main method ,
+it will display the results of the execution of the main only ..
+ 
+ SO currentThread means it refers the current execution where is currently executing.
+
+
+ Blocked State:-
+ If the thread enters a blocked state means it is waiting to acquire a lock where the other thread 
+ holds .if it gets the lock then it will proceed .
+
+ Blocked state occurs when the thread tries to access syncronized block or method where
+  the other thread is executing that method.
+
+  join() method .. THe join method is used to pause the execution of current thread and waits for the called thread
+  to finish its execution,
+
+  like if u have a Mythread class which extends thread and ,
+  u call that class in the main method and create a instance of it and , if u give the join method to 
+  that instance .. It wil execute the MyThread first and main method will wait for completeion of execution before moving to other thread .
+  
+
+  The purpose of join method is for synchronizing thread.
+  It helps one thread to execute at a time before proceeding further.
+
+
+  When to use Thread extends or implements Runnable?
+  When there is a class that is already extended by other class then u cant use Thread,
+  becuz java supports only single inheritance ,In that case use Runnable.
+
+  Using Threads extends can be less efficient compared to the runnable becaus of 
+  n situations where multiple threads need to share the same task (because each thread would 
+  need to be a separate instance of the Thread class).
+And also Runnable supports reusablity So its more efficient.

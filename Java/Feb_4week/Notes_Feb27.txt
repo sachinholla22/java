@@ -1,0 +1,168 @@
+Time Complexity in DSA :-
+Time complexity in DSA refers to how the running time of an algorithm increases as the size of the input
+increases. Its a way to measure the efficiency of an algorithm, helping us to understand how long an algorithm will take o complete
+based on the number of elements it needs to process.
+
+
+Simple Example: Imagine you are looking for a name in phone , if a book has 10 names.
+ it’s easy to search through all of them. But what if the phone book has 10,000 names? You'd want to know how long it might 
+ take as the book gets larger, right?
+
+ Purpose of Time Complexity:
+ Using time COmplexity we can estimate how well an algorithm performs when the input size grows.
+ It helps us to avoid inefficinet algorithms , especially while dealing with large amounts of data.
+
+ For example , if we use a method that takes too long to process , the program could crash or become unresponsive
+ when handling ig data .By analyzing time complexity , we can pick better algos that perform efficiently 
+ even as the input size grows.
+
+ Common Time Complexities:-
+ O(1)-Constant time :- No matter how big the input is , the algorithm takes the same amount of time.
+ (Eg. Accessing an element in an array by its index).
+
+ O(n)-Linear time: The time grows linearly with the input size. (Example: Searching for an element in an unsorted list).
+
+ O(n^2)- The time grows as the square of the input size. (Example:Bubble sort algorithm).
+
+ O(log n)-Logarithm time ;- The time grows slowly even as the input size gets larger(Eg: Binary search in sorted list);
+
+
+ So O(1)-Constant time is the best timecomplexity because no matter how big the input is, the algo will always run in
+ the same time.
+
+Egpublic class ConstantTimeExample {
+    public static void main(String[] args) {
+        int[] arr = {10, 20, 30, 40, 50};
+        // Accessing an element by index takes constant time O(1)
+        System.out.println(arr[2]);  // Output: 30
+    }
+}
+
+
+O(n) (Good);-This is a good time complexity for alos because the time taken grows linearly with the size of the input.WHile its
+not the best , still its quite efficient for many practical scenarios.
+
+Eg ,
+public class LinearTimeExample {
+    public static void main(String[] args) {
+        int[] arr = {10, 20, 30, 40, 50};
+        
+        // Searching for a value in an unsorted array
+        int searchValue = 30;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == searchValue) {
+                System.out.println("Found " + searchValue);  // Output: Found 30
+                return;
+            }
+        }
+        System.out.println("Not Found");
+    }
+}
+
+Explaination :This is linear Search . As the input size increases , the time taken will increase proportinally .In
+the worst case, it will through the entire array.
+
+
+3)O(log n )-Logorthm time (Better) than O(n),
+Because time grows much slower as the input size increases. Alogs with this complexity are very efficint for 
+large datasets.
+
+Eg ; Binary Search Code is the good example for this.
+
+
+4)O(n^2)-Quadratic time -Worst;
+This is worst because the time grows exponentially as input size .
+
+(MOstly if u use 2 nested loops ) it results like this 
+
+
+MULTITHREADING:-
+Why java multithreading calls only run method a main?
+because this is how the java threading system knows what to run in the background.
+
+If u define a custom method name, the thread will not automatically call it .The thread is 
+specifically designed to call run().
+
+So the run() method is entry point ..and if u define custom method u need to call by creating instance of it.
+
+So , in java threads is used to execute tasks in background or concurrently , allowing multiple
+tasks to execute independently to each other.
+
+
+What tasks can Java threads perform?
+Threads are typically used to perform tasks that can be done in parallel or in the background while other tasks 
+(like user interaction or I/O operations) continue to run without being delayed. Some common tasks include:
+
+
+Background Operations:
+Like downloading data: WHile a user interacts with a program , a thread can run in background.
+
+Background computations: Long running calculations or data processing tasks can be handled by a thread, ensuring main 
+program remains responsiveness
+
+2)Handling UI updates ;
+Example: In a game, the main thread handles user input, while another thread may handle animations or updates
+to the game state.
+
+
+interrupt() method.
+
+It is used to signal a thread that is should stop what its doing and handle the interrupt request.Its not a forceful stop,
+rather , its a notification to the thread that is should stop or check if it needs to do something different.
+
+
+IN simplier: Interrupting a thread is a way to polietly ask it to stop what its doing or to check it it should exit or do 
+something..
+
+When to use interrupt()?
+Stopping long-running tasks.
+Waiting threads:
+
+
+HOw does it work?
+A thread can check if it has been interrupted by using the Thread.interrupted() method or by checking the 
+interrupt status.
+-When you call interrupt() on a thread, it sets the interrupt flag for that thread.
+
+If the thread is in a state where it can react to an interrupt (e.g., sleeping, waiting, or blocked on I/O), it will throw an InterruptedException.
+If the thread is performing a task (like in a loop), it can choose to handle the interruption and stop processing by checking the interrupt flag.
+
+
+yield() method:
+This method in java is used to give the hints to the thread scheduler that the current thread is willing to temporarily
+pause its execution and give another thread a chance to run.
+In simple word its saying like , "Im done for now . let another thread do some work"..HOwever its just a suggestion to thread scheduler and the
+thread sceduler  may or maynot yield depending on the system and its current scheduling policy.
+
+Typically , yield() is used when threads of equal priority are running , It doesnt gurantee that the thread will stop 
+immediately  or CPU will swithc to another thread right away.
+
+
+class MyTask implements Runnable {
+    private String threadName;
+
+    MyTask(String name) {
+        this.threadName = name;
+    }
+
+    public void run() {
+        for (int i = 0; i < 5; i++) {
+            System.out.println(threadName + " is running: " + i);
+            
+            // Yield to other threads
+            Thread.yield();  // Suggest to the thread scheduler to give other threads a chance
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create two threads with different names
+        Thread thread1 = new Thread(new MyTask("Thread 1"));
+        Thread thread2 = new Thread(new MyTask("Thread 2"));
+
+        // Start both threads
+        thread1.start();
+        thread2.start();
+    }
+}

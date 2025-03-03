@@ -1,0 +1,90 @@
+Thread States:-A thread can be one from these states .
+-New : A thread is created but not yet started.
+-Runnable: A thread is ready to run and waiting to CPU to be assigned.
+-Blocked : A thread is blocked because its waiting for a resource (eg.synchronization).
+-Waiting : A thread is waiting indefinetly for another thread to perfrom task.
+-Terminated : A thread has finished executing.
+
+
+Thread synchronization : Since multiple thread share same memory spaces ..To avoid the conflicts and data loss 
+when using shared resources we can use synchronization
+
+Eg:
+class Counter {
+    private int count = 0;
+
+    public synchronized void increment() {
+        count++;
+    }
+    
+    public synchronized int getCount() {
+        return count;
+    }
+}
+The synchronized keyword ensures that only one thread can execute the increment() or getCount() method 
+at a time, making it thread-safe.
+
+Thread Lifecycle:
+Thread creation: creates a thread instance.
+Thread Execution: When start() method is called , it moves thread to runnable state.
+Thread Termination: After the execution of run () it moves to terminated state(finishing the execution).
+
+
+MultiTasking:- It is an ability of a CPU to execute multiple process concurrently .
+Process :- It is a program in execution.
+MultiThreading :Its executes multiple single threads concurrently. And makes up a Single process
+It enchances the efficiency of multitasking by breaking down individual tasks into smaller sub-tasksor thread.
+These threads can be processed simultaneoulsy , making better use of the CPU capabilities.
+
+So remember multitasking can be made better because of use of multithreading.
+
+In a single-core system:
+Both threads and processes are managed by the OS scheduler through time slicing and context switching to created
+the illusion of simultaneous execution.
+
+In multi-core system:
+Both threads and process can run in parallel on different cores, with the OS scheduler distributing tasks across the cores
+to optimize performance.
+
+
+
+Time slicing: Time slicing divided CPU time into small intervals called time sliced or quanta.
+-The OS scheduler allocated these time slices to different processes and threads, ensring each gets a fair share of CPU time.
+-Purpose: This prevents any single process or thread from monopolizing the CPU, improving responsiveness and enabling 
+concurrent execution.
+
+ Context Switching :- It is a process of saving the state of a currently running process or thread and loading the state of 
+ the next to be executed.
+ -When a process or thread's time slice expires , the OS scheduler performs a context switch to move the CPU's focus to another process or thread.
+ -Purpose: This allows multiple process and threads to share the CPU,giving the appearance of simultaneous execution on A
+ single-core CPU ir improving parallelism on multi-core CPU.
+
+
+ SO MultiTasking operates at the level of processes, which ae the OS primary units of execution.
+ In case of MultiThreading , it operatores at the level of threads, which are smaller units within a process.
+
+ Multi-tasking involves managing resources between completely separate programs, which may have independent memory spaces
+ and system resources.
+
+ Multithreading involves managing resources within a single program,where threads share the same memory resources.
+
+ Multi-Tasking allows us to run multiple applications simultaneously ,improving the productivity and system utilization.
+
+ Multithreading allows single application to perfrom multiple tasks at the same time , improving application performanc and responsiveness.
+
+
+In the Single-core environmnet ,Javas multi threading is managed by OS and JVM , which switch between threads to give illusion of  concurrency.
+
+The thread share the single core and time-slicing is used to manage thread xecution.
+
+In multi-core environment ,java's multithreading can take the full advantages of available cores.
+allowing true parallel execution of threads.
+
+
+HOw java supports multithreading? 
+Java supports multithreading through its java.lang.Thread class and java.lang.Runnable interfaces
+
+
+//Important
+When java program starts , One thread starts immeditately which is called main thread . This thread is responsible
+ for executing "main" method of the program.
